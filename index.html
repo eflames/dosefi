@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSefi - lofi chill</title>
+
+    <!-- Meta Tags SEO -->
+    <meta name="description"
+        content="DOSefi - Reproduce música lofi relajante para concentrarte, estudiar o trabajar. Experimenta vibes cozy y chill con Beats to Relax/Study.">
+    <meta name="keywords"
+        content="lofi, lofi hip hop, chill music, relaxing music, study music, focus music, background music, dosefi, beats to relax, beats to study">
+    <meta name="author" content="Ernesto Enrique Flames">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://dosefi.isdose.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dosefi.isdose.com/">
+    <meta property="og:title" content="DOSefi - lofi chill">
+    <meta property="og:description"
+        content="Música lofi relajante para concentrarte, estudiar o trabajar. Beats cozy y chill.">
+    <meta property="og:image" content="splash.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dosefi.isdose.com/">
+    <meta name="twitter:title" content="DOSefi - lofi chill">
+    <meta name="twitter:description" content="Música lofi relajante para concentrarte, estudiar o trabajar.">
+    <meta name="twitter:image" content="splash.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.ico">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0a0810">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-overlay: rgba(20, 15, 30, 0.75);
+            --accent: #9253d0;
+            --accent-dim: #e9d3ff;
+            --text: #9253d0;
+            --text-dim: #f2e1ff;
+            --glow: 0 0 20px rgba(186, 107, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: url('background.png') center/cover no-repeat;
+            background-attachment: fixed;
+            color: var(--text);
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 8, 16, 0.7);
+            z-index: 1;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .logo {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            font-family: 'VT323', monospace;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-shadow: var(--glow);
+            color: var(--accent);
+            opacity: 0.9;
+        }
+
+        .logo span {
+            color: var(--text-dim);
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 120px;
+        }
+
+        .title {
+            font-family: 'VT323', monospace;
+            font-size: clamp(2rem, 8vw, 5rem);
+            text-shadow: 2px 2px 0 #1a1520, var(--glow);
+            animation: flicker 4s infinite;
+        }
+
+        .title span {
+            color: var(--accent-dim);
+        }
+
+        @keyframes flicker {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            92% {
+                opacity: 1;
+            }
+
+            93% {
+                opacity: 0.8;
+            }
+
+            94% {
+                opacity: 1;
+            }
+
+            97% {
+                opacity: 0.9;
+            }
+
+            98% {
+                opacity: 1;
+            }
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            letter-spacing: 3px;
+        }
+
+        .now-playing {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-dim);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .now-playing::before {
+            content: '♪ ';
+            color: var(--accent);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            padding: 25px 40px;
+            background: linear-gradient(to top, rgba(10, 8, 16, 0.95), transparent);
+        }
+
+        .btn {
+            background: rgba(255, 107, 157, 0.15);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 20px;
+            font-family: 'VT323', monospace;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 3px;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: #1a1520;
+            box-shadow: var(--glow);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-dim);
+            color: var(--text-dim);
+            padding: 8px 12px;
+            font-family: 'VT323', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: all 0.2s;
+        }
+
+        .fullscreen-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
+        }
+
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 49;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 8, 16, 0.6) 100%);
+        }
+
+        .crt-flicker {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 51;
+            animation: crt 0.15s infinite;
+            background: rgba(255, 107, 157, 0.02);
+            opacity: 0;
+        }
+
+        .icono {
+            width: 150px;
+        }
+
+        @keyframes crt {
+            0% {
+                opacity: 0.02;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0.02;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="overlay"></div>
+    <div class="video-bg">
+        <iframe id="player" width="100%" height="100%" style="opacity: 0;"
+            src="https://www.youtube.com/embed/IiHECg3x5tI?autoplay=0&loop=1&playlist=IiHECg3x5tI&controls=0&showinfo=0&modestbranding=1&rel=0&mute=0&enablejsapi=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+    <div class="crt-flicker"></div>
+
+    <!-- <div class="logo">dose<span>fi</span></div> -->
+    <div class="logo"><img src="dosefi.png" alt="DOSe logo" class="icono"></div>
+
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">
+        ⛶ FULLSCREEN
+    </button>
+
+    <div class="content">
+        <h1 class="title">The right <span>DOSe</span> of music</h1>
+        <p class="subtitle">// Lofi con sabor Venezolano</p>
+        <div class="now-playing">Sonando: Caracas Lofi - Venezuelan Chill Beats to Study/Relax</div>
+    </div>
+
+    <div class="controls">
+        <button class="btn" id="playPauseBtn" onclick="togglePlay()">
+            <svg id="playIcon" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+            </svg>
+            <svg id="pauseIcon" viewBox="0 0 24 24" style="display:none">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const player = document.getElementById('player');
+        let isPlaying = false;
+
+        function togglePlay() {
+            if (!player || !player.contentWindow) return;
+
+            if (isPlaying) {
+                player.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                isPlaying = false;
+                document.getElementById('playIcon').style.display = 'block';
+                document.getElementById('pauseIcon').style.display = 'none';
+            } else {
+                player.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                isPlaying = true;
+                document.getElementById('playIcon').style.display = 'none';
+                document.getElementById('pauseIcon').style.display = 'block';
+            }
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlay();
+            }
+        });
+    </script>
+</body>
+
+</html>
