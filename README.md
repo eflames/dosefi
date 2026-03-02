@@ -5,10 +5,6 @@
 </p>
 
 <p align="center">
-  <strong>DOSefi</strong> — lofi chill
-</p>
-
-<p align="center">
   🎧Música lofi relajante para concentrarte, estudiar o trabajar🎧
 </p>
 
